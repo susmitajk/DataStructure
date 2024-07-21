@@ -80,10 +80,30 @@ class BinarySearchTree:
             self.post_order_traversal(node.left)
             self.post_order_traversal(node.right)
             print(node.value, end=' ')
+        
+    def find_height(self, node):
+        if node is None:
+            return -1
+        left_height = self.find_height(node.left)
+        right_height = self.find_height(node.right)
+        return max(left_height, right_height) + 1
+
+    # Finding depth of a node using recursion
+    def find_depth(self, value, node=None, depth=0):
+        if node is None:
+            node = self.root
+        if node is None:
+            return -1
+        if value == node.data:
+            return depth
+        elif value < node.data:
+            return self.find_depth(value, node.left, depth + 1)
+        else:
+            return self.find_depth(value, node.right, depth + 1)
 
 # Test the BinarySearchTree class
 bst = BinarySearchTree()
-list1 = [20, 4, 30, 1, 5, 6]
+list1 = [10,5,15,2,7,12,20]
 for i in list1:
     bst.insert(i)
 
@@ -106,4 +126,6 @@ print('\nTree after deletion:')
 bst.in_order_traversal(bst.root)
 print('\n')
 
-
+# Height and Depth
+print("Height of the tree:", bst.find_height(bst.root))
+print("Depth of node with value 7:", bst.find_depth(7))

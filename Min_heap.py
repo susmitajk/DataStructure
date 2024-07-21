@@ -77,5 +77,5 @@ min1.display()
 min2 = MinHeap()
 arr = [10,25,2,78,44,21,7,55]
 min2.build_heap(arr)
-print('\n-------the max2 heap is--------')
+print('\n-------the min2 heap is--------')
 min2.display()
